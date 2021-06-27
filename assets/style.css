@@ -10,7 +10,7 @@ html,body{
     height: 100%;
 }
 .wrap_sidebar {
-    border-right:  1px solid #333b4f;
+    border-right:  1px solid #3d3d3d;
     float: left;
     margin: 0;
     height: 100%;
@@ -115,7 +115,7 @@ figure.wrap_chat-header--user___avatar{
     overflow: hidden;
     outline : none;
     height: 70vh;
-    border-bottom: 1px solid #293145;
+    border-bottom: 1px solid #494949;
 }
 .message-content {
     background: #ebebeb;
@@ -156,7 +156,7 @@ figure.wrap_chat-header--user___avatar{
 .chat-footer--typing input {
     height: auto;
     border-radius: 5px;
-    border: 1px solid #333b4f;
+    border: 1px solid #323232;
     padding: 10px 15px;
     background-color: #3f3f44;
     color: #C5C8CC;
@@ -171,6 +171,6 @@ font-family: 'Righteous', cursive;
     padding: 1em;
     border-radius: 5px;
     color: #C5C8CC;
-    background-color: #192136;
-    border : 1px solid #333b4f; 
+    background-color: #242424;
+    border : 1px solid #363636;
 }
