@@ -24,8 +24,12 @@ html,body{
 .wrap_sidebar-header span{
     font-family: 'Righteous', cursive;
     color: #C5C8CC;
-    font-size: 22px;   
+    font-size: 22px;
     float: left;
+}
+.profile_picture {
+    font-family: 'Rubik', sans-serif;
+    color: #C5C8CC;
 }
 .btn-add {
     margin-left: 2em;
@@ -94,6 +98,17 @@ figure.wrap_chat-header--user___avatar{
     margin-right: 1em;
     margin-top: 0;
     margin-left: 1em;
+
+}
+div.wrap_chat-header--user___avatar_text{
+    display: inline-block;
+    margin-bottom: 0;
+    height: 2.3rem;
+    width: 2.3rem;
+    margin-top: -30px;
+    margin-left: 20px;
+
+    position: absolute;
 }
 .wrap_chat-header--user___content {
     color: white;
