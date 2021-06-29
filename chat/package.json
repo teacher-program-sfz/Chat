@@ -1,0 +1,16 @@
+{
+  "name": "socket-chat-example",
+  "version": "0.0.1",
+  "description": "my first socket.io app",
+  "dependencies": {
+    "connect-busboy": "0.0.2",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "socket.io": "^3.0.3"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

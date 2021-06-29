@@ -4,14 +4,15 @@
 <head>
 
     <link href="https://fonts.googleapis.com/css?family=Righteous|Rubik&display=swap" rel="stylesheet">
-    <link href="../assets/style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
 </head>
 
 <body>
+
 <div class="wrapper">
     <div class="wrap_sidebar">
         <div class="wrap_sidebar-header">
-            <span>Welcome</span>
+            <span>Welcome </span>
         </div>
 
         <div class="wrap_sidebar-content">
@@ -24,19 +25,14 @@
         <div class="wrap_chat-header">
             <div class="wrap_chat-header--user">
                 <figure class="wrap_chat-header--user___avatar">
-                <img src="../assets/img/avatar/man_avatar3.jpg" alt="avatar" class="rounded-circle">
+                <img src="assets/img/avatar/man_avatar3.jpg" alt="avatar" class="rounded-circle">
                 </figure>
                 <div class="wrap_chat-header--user___avatar_text profile_picture">
-                    <h2>
+                    <h2 >
                     </h2>
                 </div>
                 <div class="wrap_chat-header--user___content">
-                    <h5 class="name"> <?php
-                        $name = "Franz Beckenbauer";
-                        echo $name;
 
-
-                        ?></h5>
                 </div>
 
 
@@ -45,44 +41,77 @@
         </div>
 
     </div>
-    <div class="wrap_chat-body">
+    <div class="wrap_chat-body" style="overflow-y: scroll; display: flex; flex-direction: column-reverse;"; >
         <div class="messages">
-            <div class="message-item ingoing-message">
-                <div class="message-avatar">
-
-                </div>
-                <div class="message-content">
-
-                    what is your name
-
-                </div>
-            </div>
-            <div class="message-item outgoing-message">
-                <div class="message-avatar">
-
-                </div>
-                <div class="message-content">
-                    what is your name ?
-                </div>
-            </div>
+            <ul id="messages_socket"></ul>
         </div>
     </div>
     <div class="chat-footer">
         <div class="chat-footer--typing">
-
-            <input type="text" placeholder="Typing message..."/>
+            <form id="form" action="">
+                <input type="text" placeholder="Typing message..."id="input" autocomplete="off" />
+            </form>
             <div class="btn">
                 <a>
-                    <img src="../assets/icon/send.svg" alt="send">
+                    <img src="assets/icon/send.svg" alt="send">
                 </a>
             </div>
             <div class="btn">
                 <a>
-                    <img src="../assets/icon/attach.svg" alt="attach">
+                    <img src="assets/icon/attach.svg" alt="attach">
                 </a>
             </div>
         </div>
     </div>
 </div>
+<script src="/socket.io/socket.io.js"></script>
+
+<script>
+    var socket = io();
+
+    var messages = document.getElementById('messages_socket');
+    var form = document.getElementById('form');
+    var input = document.getElementById('input');
+
+
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        if (input.value) {
+            socket.emit('chat message', input.value);
+
+            var item = document.createElement('li');
+            item.textContent = input.value;
+            item.classList = "outgoing-message";
+            messages.appendChild(item);
+            window.scrollTo(0, document.body.scrollHeight);
+            input.value = '';
+        }
+    });
+
+    socket.on('chat message', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        item.classList = "ingoing-message";
+        messages.appendChild(item);
+        window.scrollTo(0, document.body.scrollHeight);
+    });
+
+    function querySt(ji) {
+
+        hu = window.location.search.substring(1);
+        gy = hu.split("&");
+
+        for (i=0;i<gy.length;i++) {
+            ft = gy[i].split("=");
+            if (ft[0] == ji) {
+                return ft[1];
+            }
+        }
+    }
+    var koko = querySt("username");
+    document.getElementById('usernamevar').value = koko;
+
+</script>
+
 </body>
 </html>
