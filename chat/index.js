@@ -25,20 +25,6 @@ io.on('connection', (socket) => {
   socket.on('chat message', msg => {
     socket.broadcast.emit('chat message', msg);
   });
-  socket.on('login', (userTokenOrId) => {
-    // store this to onlineUsers or redis
-    // Other stuff
-    onlineUsers.push(userTokenOrId);
-    io.emit('names', userTokenOrId)
-
-  });
-  socket.on('logout', (userTokenOrId) => {
-    // remove this from onlineUsers or redis
-    // Other stuff
-    onlineUsers.splice(onlineUsers.indexOf(userTokenOrId), 1);
-    io.emit('names', userTokenOrId)
-
-  });
 });
 
 http.listen(port, () => {
