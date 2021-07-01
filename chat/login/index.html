@@ -5,10 +5,10 @@
     <title>Chat</title>
 </head>
 <body>
-<form method="get" action="../chat.html">
+<form method="get" action="../chat.html ">
     <div class="container">
         <div class="center">
-            <button class="btn" type="submit" name="btn">
+            <button id="username" class="btn" type="submit" name="btn" onclick="getInputValue();">
                 <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
                     <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
                     <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
@@ -16,13 +16,18 @@
                 <span>SUBMIT</span>
             </button>
             <div class="input">Name:</div>
-            <input type="text" name="username"required><br>
+            <input id="myInput" type="text" name="username"required><br>
         </div>
     </div>
         </div>
 </form>
 <script>
+    var socket = io();
 
+
+    form.addEventListener('submit', function(e) {
+        socket.emit('message', document.getElementById("myInput").value)
+    });
 
 
 </script>

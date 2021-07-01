@@ -12,11 +12,14 @@
 <div class="wrapper">
     <div class="wrap_sidebar">
         <div class="wrap_sidebar-header">
-            <span>Welcome </span>
+            <span>Welcome: &nbsp;</span>
+            <span id="welcome_name"> </span>
         </div>
 
         <div class="wrap_sidebar-content">
             <input type="text" placeholder="Search chats"/>
+
+            <ul id="names-list"></ul>
         </div>
 
     </div>
@@ -28,8 +31,7 @@
                 <img src="assets/img/avatar/man_avatar3.jpg" alt="avatar" class="rounded-circle">
                 </figure>
                 <div class="wrap_chat-header--user___avatar_text profile_picture">
-                    <h2 >
-                    </h2>
+
                 </div>
                 <div class="wrap_chat-header--user___content">
 
@@ -65,27 +67,41 @@
     </div>
 </div>
 <script src="/socket.io/socket.io.js"></script>
-
 <script>
+
     var socket = io();
 
     var messages = document.getElementById('messages_socket');
+    var names = document.getElementById('names-list');
     var form = document.getElementById('form');
-    var input = document.getElementById('input');
+    var input = document.getElementById('input')
+
+
+    let params = new URLSearchParams(document.location.search.substring(1));
+    document.getElementById("welcome_name").innerHTML = params.get("username");
 
 
     form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
-            socket.emit('chat message', input.value);
 
+
+            socket.emit('message', params.get("username"))
+            socket.emit('chat message', input.value);
             var item = document.createElement('li');
             item.textContent = input.value;
             item.classList = "outgoing-message";
             messages.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
             input.value = '';
+            }
         }
+    );
+    window.addEventListener("beforeunload", function (e) {
+        var confirmationMessage = "\o/";
+        socket.emit('logout', params.get("username"));
+        (e || window.event).returnValue = confirmationMessage; //Gecko + IE
+        return confirmationMessage;                            //Webkit, Safari, Chrome
     });
 
     socket.on('chat message', function(msg) {
@@ -95,22 +111,11 @@
         messages.appendChild(item);
         window.scrollTo(0, document.body.scrollHeight);
     });
-
-    function querySt(ji) {
-
-        hu = window.location.search.substring(1);
-        gy = hu.split("&");
-
-        for (i=0;i<gy.length;i++) {
-            ft = gy[i].split("=");
-            if (ft[0] == ji) {
-                return ft[1];
-            }
-        }
-    }
-    var koko = querySt("username");
-    document.getElementById('usernamevar').value = koko;
-
+    socket.on('names', function(msg) {
+        var item = document.createElement('li');
+        item.textContent = msg;
+        names.appendChild(item);
+    });
 </script>
 
 </body>

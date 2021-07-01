@@ -27,6 +27,12 @@ html,body{
     font-size: 22px;
     float: left;
 }
+.wrap_sidebar-header h1{
+    font-family: 'Righteous', cursive;
+    color: #C5C8CC;
+    font-size: 22px;
+    float: left;
+}
 .profile_picture {
     font-family: 'Rubik', sans-serif;
     color: #C5C8CC;
@@ -162,7 +168,7 @@ div.wrap_chat-header--user___avatar_text{
     display: block;
     position: relative;
     margin-top:3px;
-
+    word-wrap: break-word;
 
 }
 .outgoing-message{
@@ -178,6 +184,7 @@ div.wrap_chat-header--user___avatar_text{
     display: block;
     position: relative;
     margin-top:3px;
+    word-wrap: break-word;
 
 }
 .chat-footer{

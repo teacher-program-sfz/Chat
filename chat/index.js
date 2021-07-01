@@ -1,4 +1,6 @@
 //npm install express
+// npm install path
+// npm install rsa
 const express = require("express");
 const upload = require("express-fileupload")
 var fs = require('fs');
@@ -7,26 +9,13 @@ const app = require('express')();
 const http = require('http').Server(app);
 const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
-// npm install path
+const NodeRSA = require('node-rsa');
 var path = require('path');
-app.use(busboy());
+let onlineUsers = [];
+
 app.use(express.static(path.join(__dirname, '/')));
 app.use(express.static(path.join(__dirname, '/files')));
 console.log(__dirname)
-
-app.post('/upload', function(req, res) {
-  var fstream;
-  req.pipe(req.busboy);
-  req.busboy.on('file', function (fieldname, file, filename) {
-    console.log(fieldname.size)
-    console.log("Uploading: " + filename);
-    fstream = fs.createWriteStream(__dirname + '/files/' + filename);
-    file.pipe(fstream);
-    fstream.on('close', function () {
-      res.redirect('back');
-    });
-  });
-});
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/login/index.html');
@@ -36,8 +25,26 @@ io.on('connection', (socket) => {
   socket.on('chat message', msg => {
     socket.broadcast.emit('chat message', msg);
   });
+  socket.on('login', (userTokenOrId) => {
+    // store this to onlineUsers or redis
+    // Other stuff
+    onlineUsers.push(userTokenOrId);
+    io.emit('names', userTokenOrId)
+
+  });
+  socket.on('logout', (userTokenOrId) => {
+    // remove this from onlineUsers or redis
+    // Other stuff
+    onlineUsers.splice(onlineUsers.indexOf(userTokenOrId), 1);
+    io.emit('names', userTokenOrId)
+
+  });
 });
 
 http.listen(port, () => {
   console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
+
+
+
+
