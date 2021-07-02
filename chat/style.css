@@ -35,7 +35,7 @@ html,body{
 }
 .profile_picture {
     font-family: 'Rubik', sans-serif;
-    color: #C5C8CC;
+    color: #C5C8CC
 }
 .btn-add {
     margin-left: 2em;
@@ -56,20 +56,23 @@ html,body{
     position: relative;
     font-size: 14px;
     width:auto;
-    display: inline-flex;
-    padding: 5px 8px;
+    padding:-21px 15px;
     line-height: 10px;
+}
+.btntest{
+	position: relative /* Declared position allows for location changes */
+    top: -200px;
 }
 .btn.btn-outline-light{
     border : 1px solid white;
     border-color: #3f3f44;
-    border-radius: 5px;
+    border-radius: 5px; 
     float: right;
-    margin-left: 0.5em;
+    
 }
 .btn img {
-    width: 15px;
-}
+    
+}  
 .rounded-circle {
     border-radius: 50% !important;
 }
@@ -204,7 +207,7 @@ div.wrap_chat-header--user___avatar_text{
     padding: 10px 15px;
     background-color: #3f3f44;
     color: #C5C8CC;
-    width: 120vh;
+    width: 80vh;
 
 }
 /*
