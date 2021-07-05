@@ -56,12 +56,8 @@ html,body{
     position: relative;
     font-size: 14px;
     width:auto;
-    padding:-21px 15px;
+    padding:-20px 15px;
     line-height: 10px;
-}
-.btntest{
-	position: relative /* Declared position allows for location changes */
-    top: -200px;
 }
 .btn.btn-outline-light{
     border : 1px solid white;
@@ -200,7 +196,7 @@ div.wrap_chat-header--user___avatar_text{
     margin-left: 0em;
     padding: 1px;
 }
-.chat-footer--typing input {
+.chat-footer--typing input[type=text] {
     height: auto;
     border-radius: 5px;
     border: 1px solid #323232;
@@ -210,6 +206,15 @@ div.wrap_chat-header--user___avatar_text{
     width: 80vh;
 
 }
+.chat-footer--typing.btn input{
+    position: relative;
+    font-size: 14px;
+    width:auto;
+    padding:-20px 15px;
+    line-height: 10px;
+}
+
+
 /*
 font-family: 'Rubik', sans-serif;
 font-family: 'Righteous', cursive;

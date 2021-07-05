@@ -11,7 +11,8 @@ const io = require('socket.io')(http);
 const port = process.env.PORT || 3000;
 const NodeRSA = require('node-rsa');
 var path = require('path');
-let onlineUsers = [];
+
+
 
 app.use(express.static(path.join(__dirname, '/')));
 app.use(express.static(path.join(__dirname, '/files')));
